@@ -71,7 +71,7 @@ export default [
     },
     {
         "id": 15,
-        "image_open": "https://www.zksama.com/navidad/images/resolved/resolved_15.webp",
+        "image_open": "images/resolved/resolved_15.webp",
         "advent": "https://youtu.be/WI06NWds8pM"
     },
     {
