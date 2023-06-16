@@ -1,19 +1,31 @@
 import React from "react";
-import { Text, FlatList } from "react-native";
+import { Text, ScrollView, StyleSheet, View } from "react-native";
 import repositories from "../data/repositories.js";
 import CalendarItem from "../components/CalendaryItem.jsx"
-//Scroll LIST
+
+const styles = StyleSheet.create({
+  adventList: {
+    //Default flex : "column"
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-around"
+  }
+});
+
+//ListView
 const CalendarList = () => {
+  /* <View> It's the similar as <div> but with flex default*/
   return (
-    /* Flat& Scroll are similar : <ScrollView> {repositories.map((advent) => (*/
-    <FlatList
-      data={repositories}
-      renderItem={({ item }) => (
-        /*Load all the OBJ o ITEM {id, advent,image_open }*/
-        <CalendarItem {...item} />
-      )}
-    />
+    <ScrollView>
+      <Text>Abre las casilla de hoy</Text>
+      <View style={styles.adventList}>
+        {repositories.map((advent) => (
+          <CalendarItem key={advent.id} {...advent} />
+        ))}
+      </View>
+    </ScrollView>
   );
 };
+
 
 export default CalendarList;

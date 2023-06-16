@@ -7,20 +7,34 @@ const getToday = () => {
 }
 /* The parent style for the 'View' */
 const styles = StyleSheet.create({
-    lock: {
-        padding: 20,
-        paddingBottom: 5,
-        paddingTop: 5,
-        backgroundColor: "lightgreen",
-        margin: 10
-    },
+    container: {
+        position: "relative",
+        margin: 10,
+        borderRadius: 6,
+        overflow: "hidden",
+        shadowColor: "black",
+        shadowRadius: 50,
 
-    unlock: {
-        padding: 20,
-        paddingBottom: 5,
-        paddingTop: 5,
-        backgroundColor: "lightblue",
-        margin: 10
+    },
+    image: {
+        width: 150,
+        height: 150,
+    },
+    imageOverlay: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: 150,
+        height: 150,
+    },
+    numberOverlay: {
+        position: 'absolute',
+        bottom: 0,
+        left: 10,
+        color: "white",
+        fontSize: 40,
+        textShadowColor: 'black',
+        textShadowRadius: 15,
     }
 });
 
@@ -29,22 +43,19 @@ const CalendarItem = (props) => {
     // If the day is passed show the advent day
     if (getToday() >= props.id) {
         return (
-            <View key={props.id} style={styles.lock}>
-                <Text>DIA {props.id}</Text>
-                <Image style={{ height: 100, width: 100 }} source={{ uri: "https://www.zksama.com/navidad/"+props.image_open }} />
-                <Text>Desbloqueada</Text>
+            <View style={styles.container}>
+                <Text style={[styles.numberOverlay, { zIndex: 2 }]}>{props.id}</Text>
+                <Image style={[styles.imageOverlay, { zIndex: 1 }]} source={{ uri: 'https://www.zksama.com/navidad/images/web/candado_abierto.png' }} />
+                <Image style={styles.image} source={{ uri: 'https://www.zksama.com/navidad/images/web/fondo.webp' }} />
             </View>);
     }
-    //If the day does not arrive, block the advent day
+    //If the day does not arrive, block the advent da
     return (
-        <View key={props.id} style={styles.unlock}>
-            <Text>Casilla {props.id}</Text>
-            <Image style={{ height: 100, width: 100 }} source={{ uri: 'https://www.zksama.com/navidad/images/web/fondo.webp' }} />
-            <Text>Bloqueada</Text>
+        <View style={styles.container}>
+            <Text style={[styles.numberOverlay, { zIndex: 2 }]}>{props.id}</Text>
+            <Image style={[styles.imageOverlay, { zIndex: 1 }]} source={{ uri: 'https://www.zksama.com/navidad/images/web/candado_cerrado.png' }} />
+            <Image style={styles.image} source={{ uri: 'https://www.zksama.com/navidad/images/web/fondo.webp' }} />
         </View>);
-
-    /* <View> It's the similar as <div> */
-
 }
 
 
