@@ -17,7 +17,6 @@ const CalendarList = () => {
   /* <View> It's the similar as <div> but with flex default*/
   return (
     <ScrollView>
-      <Text>Abre las casilla de hoy</Text>
       <View style={styles.adventList}>
         {repositories.map((advent) => (
           <CalendarItem key={advent.id} {...advent} />
